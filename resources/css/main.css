@@ -489,5 +489,111 @@ iframe {
   }
 }
 
+/* [Topbar] */
 
+.topbar {
+  width: 100%;
+  height: 5%;
+  background-color: black;
+  z-index: -1;
+}
 
+/* [Sidebar] */
+
+.sidebar {
+  height: 95%;
+  width: 10%;
+  position: fixed;
+  z-index: -1;
+  margin-top: 0;
+  left: 0;
+  background-color: #2d2e2e;
+  overflow: auto;
+  font-family: Poppins-Regular;
+}
+
+.sidebar a.active {
+  background-color: #188aa3;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #188aa3;
+  color: white;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+/* [Content] */
+
+div.content {
+  margin-left: 10%;
+  padding: 5% 16px;
+  height: 100%;
+  background: #f2f2f2;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* [Planning] */
+
+div.planning {
+  background: #c4c1c1;
+  padding: 1% 1%;
+  height: 50%;
+  border-radius: 10px;
+}
+
+/* [Agenda] */
+
+div.agenda {
+  background: #c4c1c1;
+  padding: 1% 1%;
+  height: 35%;
+  margin-top: 2%;
+  width: 49%;
+  float: left;
+  border-radius: 10px;
+}
+
+/* [Contact] */
+
+div.contact {
+  background: #c4c1c1;
+  padding: 1% 1%;
+  height: 35%;
+  margin-left: 0px;
+  margin-top: 2%;
+  width: 49%;
+  float: right;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  div.contact {
+    float: none;
+    position: relative;
+  }
+}
