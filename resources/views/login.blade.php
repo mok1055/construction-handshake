@@ -32,6 +32,11 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
+                @if(isset(Auth::user()->email))
+                <script>
+                    window.location = "dashboard";
+                </script>
+                @endif
 
                 @if ($message = Session::get('error'))
                 <button type="button" class="close" data-dismiss="alert">×</button>

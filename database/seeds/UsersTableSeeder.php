@@ -14,10 +14,10 @@ class UsersTableSeeder extends Seeder
     {
         //test data
         User::create([
-            'name'             => 'Mohamed Kichouhi',
-            'email'            => 'mohamed.kichouhi@student.hu.nl',
-            'password'         => Hash::make('test123'),
-            'remember_token'   => Str::random(10),
+            'first_name'            => 'Mohamed',
+            'last_name'             => 'Kichouhi',
+            'email'                 => 'mohamed.kichouhi@student.hu.nl',
+            'password'              =>  Hash::make('test123')
         ]);
     }
 }

@@ -12,7 +12,6 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('fonts/iconic/css/material-design-iconic-font.min.css') }}">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/animate/animate.css') }}">
     <!--===============================================================================================-->
@@ -31,15 +30,13 @@
 
 <body>
     <div class="topbar">
+        @if(isset(Auth::user()->email))
         <div class="header-info">
-            @if(isset(Auth::user()->email))
-            <h3>Welcome {{ Auth::user()->name }}</h3>
+            <h3>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
             <a href="{{ url('/logout') }}">Logout</a>
         </div>
         @else
-        <script>
-            window.location = "/home";
-        </script>
+        <script>window.location = "/main";</script>
         @endif
     </div>
     <!-- The sidebar -->
