@@ -541,7 +541,7 @@ iframe {
 
 .topbar {
     width: 100%;
-    height: 5%;
+    height: 7%;
     background-color: black;
     z-index: -1;
 }
@@ -646,6 +646,11 @@ div.contact {
     width: 49%;
     float: right;
     border-radius: 10px;
+}
+
+div.header-info * {
+    color: #ffffff;
+    padding: 10px 10px 0px;
 }
 
 @media screen and (max-width: 900px) {

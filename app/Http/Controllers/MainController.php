@@ -30,11 +30,6 @@ class MainController extends Controller
         }
     }
 
-    public function successLogin()
-    {
-        return view('dashboard');
-    }
-
     public function logout()
     {
         Auth::logout();

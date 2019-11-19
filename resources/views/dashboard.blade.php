@@ -36,7 +36,9 @@
             <a href="{{ url('/logout') }}">Logout</a>
         </div>
         @else
-        <script>window.location = "/main";</script>
+        <script>
+            window.location = "/main";
+        </script>
         @endif
     </div>
     <!-- The sidebar -->
@@ -51,6 +53,20 @@
     <div class="content">
         <div class="planning">
             <h2>Projecten</h2>
+            <table>
+                <tr>
+                    <th>Naam</th>
+                    <th>Beschrijving</th>
+                    <th>Status</th>
+                </tr>
+                @foreach($projects as $project)
+                <tr>
+                    <td>{{$project->name}}</td>
+                    <td>{{$project->description}}</td>
+                    <td>{{$project->status}}</td>
+                </tr>
+                @endforeach
+            </table>
         </div>
         <div class="agenda">
             <h2>Agenda</h2>

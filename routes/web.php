@@ -16,6 +16,6 @@ Route::get('home', 'MainController@index');
 
 Route::post('/home/checklogin', 'MainController@checkLogin');
 
-Route::get('dashboard', 'MainController@successlogin');
+Route::get('dashboard', 'DashboardController@index');
 
 Route::get('logout', 'MainController@logout');
