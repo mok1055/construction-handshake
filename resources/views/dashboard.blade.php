@@ -29,18 +29,20 @@
 </head>
 
 <body>
-    <div class="topbar">
-        @if(isset(Auth::user()->email))
-        <div class="header-info">
-            <h3>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
-            <a href="{{ url('/logout') }}">Logout</a>
+    <header>
+        <div class="topbar">
+            @if(isset(Auth::user()->email))
+            <div class="header-info">
+                <h3>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
+                <a href="{{ url('/logout') }}">Logout</a>
+            </div>
+            @else
+            <script>
+                window.location = "/main";
+            </script>
+            @endif
         </div>
-        @else
-        <script>
-            window.location = "/main";
-        </script>
-        @endif
-    </div>
+    </header>
     <!-- The sidebar -->
     <div class="sidebar">
         <a class="active" href="#home">Dashboard</a>
@@ -52,18 +54,22 @@
     <!-- Page content -->
     <div class="content">
         <div class="planning">
-            <h2>Projecten</h2>
-            <table>
+            <h2>Projecten</h2><br>
+            <table class="table-fill">
                 <tr>
                     <th>Naam</th>
                     <th>Beschrijving</th>
                     <th>Status</th>
+                    <th>Start datum</th>
+                    <th>Eind datum</th>
                 </tr>
                 @foreach($projects as $project)
                 <tr>
                     <td>{{$project->name}}</td>
                     <td>{{$project->description}}</td>
                     <td>{{$project->status}}</td>
+                    <td>{{$project->start_date}}</td>
+                    <td>{{$project->end_date}}</td>
                 </tr>
                 @endforeach
             </table>
