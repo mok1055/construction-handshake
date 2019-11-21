@@ -38,7 +38,7 @@
 }
 
 body, html {
-	height: 100%;
+	height: 105%;
 	font-family: Poppins-Regular, sans-serif;
 }
 
@@ -174,7 +174,8 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #f2f2f2;  
+  background: #f2f2f2;
+height: auto;  
 }
 
 .wrap-login100 {
@@ -409,6 +410,8 @@ iframe {
 }
 
 
+
+
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
@@ -492,20 +495,20 @@ iframe {
 /* [Topbar] */
 
 .topbar {
-  width: 100%;
-  height: 5%;
+  width: auto;
+  height: 50px;
   background-color: black;
-  z-index: -1;
+  position: top;
 }
 
 /* [Sidebar] */
 
 .sidebar {
-  height: 95%;
+  height: 100%;
   width: 10%;
-  position: fixed;
+  position: absolute;
   z-index: -1;
-  margin-top: 0;
+  margin-top: 0px;
   left: 0;
   background-color: #2d2e2e;
   overflow: auto;
@@ -554,28 +557,27 @@ div.content {
   height: 100%;
   background: #f2f2f2;
   overflow: hidden;
-  border-radius: 10px;
 }
 
 /* [Planning] */
 
 div.planning {
   background: #c4c1c1;
-  padding: 1% 1%;
-  height: 50%;
-  border-radius: 10px;
+  padding: 2% 1%;
+  height: auto;
+  border-radius: 5px;
 }
 
 /* [Agenda] */
 
 div.agenda {
   background: #c4c1c1;
-  padding: 1% 1%;
-  height: 35%;
+  padding: 2% 1%;
+  height: auto;
   margin-top: 2%;
   width: 49%;
   float: left;
-  border-radius: 10px;
+  border-radius: 5 px;
 }
 
 /* [Contact] */
@@ -588,7 +590,15 @@ div.contact {
   margin-top: 2%;
   width: 49%;
   float: right;
-  border-radius: 10px;
+  border-radius: 5px;
+}
+
+div.profilePage {
+  background: #c4c1c1;
+  width: 80%;
+  height: 50%;
+  position: relative;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 900px) {
