@@ -39,4 +39,9 @@ class User extends Authenticatable
 
     protected $table = 'user';
     protected $primaryKey = 'user_id';
+
+    public function projects()
+    {
+        return $this->belongsToMany('App\Project', 'project_user', 'user_id', 'project_id');
+    }
 }

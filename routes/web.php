@@ -14,8 +14,12 @@ Route::get('/', 'MainController@index');
 
 Route::get('home', 'MainController@index');
 
-Route::post('/home/checklogin', 'MainController@checkLogin');
+Route::post('home/checklogin', 'MainController@checkLogin');
+
+Route::get('logout', 'MainController@logout');
 
 Route::get('dashboard', 'DashboardController@index');
 
-Route::get('logout', 'MainController@logout');
+Route::get('dashboard/project/add', 'DashboardController@createProject');
+
+Route::resource('projects', 'ProjectController');
