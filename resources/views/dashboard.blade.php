@@ -56,12 +56,14 @@
     <!-- Page content -->
     <div class="content">
         <div class="planning">
+            <div></div>
             <h2>Projecten</h2><br>
-            
+            <button onclick="location.href='{{ url('dashboard/project/add') }}'"type="button" class="btn btn-success">Project toevoegen</button><br><br>
             <table class="table-fill">
                 <tr>
                     <th>Naam</th>
                     <th>Beschrijving</th>
+                    <th>Type</th>
                     <th>Status</th>
                     <th>Start datum</th>
                     <th>Eind datum</th>
@@ -70,9 +72,10 @@
                 <tr>
                     <td>{{$project->name}}</td>
                     <td>{{$project->description}}</td>
+                    <td>{{$project->type}}</td>
                     <td>{{$project->status}}</td>
-                    <td>{{$project->start_date}}</td>
-                    <td>{{$project->end_date}}</td>
+                    <td>{{$project->start_date->format('d-m-Y')}}</td>
+                    <td>{{$project->end_date->format('d-m-Y')}}</td>
                 </tr>
                 @endforeach
             </table>
@@ -172,7 +175,7 @@
                         </select></form>
                 </div>
             </div>
-            </div>  
+            </div>
 
             <script src="../js/projects.js"></script>
                 <script src="../js/calendar.js"></script>
