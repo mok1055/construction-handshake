@@ -17,9 +17,10 @@ class CreateProjectTable extends Migration
             $table->bigIncrements('project_id');
             $table->string('name');
             $table->string('description');
-            $table->string('status');
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->string('type');
+            $table->string('status')->default('Open');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

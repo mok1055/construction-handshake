@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    protected $dates = ['start_date', 'end_date'];
+
     protected $fillable = [
-        'name', 'description', 'start_date', 'end_date',
+        'name', 'description', 'type', 'status', 'start_date', 'end_date',
     ];
 
     protected $table = 'project';
