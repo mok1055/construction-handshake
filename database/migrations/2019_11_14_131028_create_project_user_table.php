@@ -16,9 +16,14 @@ class CreateProjectUserTable extends Migration
         Schema::create('project_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
-            $table->foreign('user_id')->references('user_id')->on('user');
-            $table->foreign('project_id')->references('project_id')->on('project');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('user');
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('project');
         });
     }
 

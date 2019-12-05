@@ -20,6 +20,4 @@ Route::get('logout', 'MainController@logout');
 
 Route::get('dashboard', 'DashboardController@index');
 
-Route::get('dashboard/project/add', 'DashboardController@createProject');
-
 Route::resource('projects', 'ProjectController');
