@@ -543,10 +543,41 @@ iframe {
 /* [Topbar] */
 
 .topbar {
+    display: inline-block;
     width: 100%;
-    height: 7%;
+    height: 8%;
     background-color: black;
     z-index: -1;
+}
+
+.topbar ul {
+    float: right;
+    display:inline-block;
+}
+
+.topbar li {
+    float: right;
+    padding: 10px;
+    height: 24px;
+    display: inline;
+}
+
+.welcome {
+    color: #ffffff;
+    font-size: 20px;
+    text-align: right;
+}
+
+.logout {
+    color: #ffffff;
+    font-size: 15px;
+    text-align: right;
+}
+
+img.logo {
+    padding: 2+-px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 
@@ -651,11 +682,6 @@ div.contact {
     width: 49%;
     float: right;
     border-radius: 10px;
-}
-
-div.header-info * {
-    color: #ffffff;
-    padding: 10px 10px 0px;
 }
 
 

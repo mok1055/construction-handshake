@@ -33,14 +33,19 @@
     <header>
         <div class="topbar">
             @if(isset(Auth::user()->email))
-                <div class="header-info">
-                    <h3>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
-                    <h5><a href="{{ url('/logout') }}">Logout</a></h5>
-                </div>
+                <img class="logo" src="images/icons/logo-transparent.png">
+                <ul>
+                    <li>
+                        <label class="welcome">Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</label>
+                    </li>
+                    <br>
+                    <li>
+                        <label class="logout"><a href="{{ url('/logout') }}" class="logout">Logout</a></label>
+                    </li>
+                </ul>
             @else
                 <script>
                     window.location = "/main";
-
                 </script>
             @endif
         </div>
