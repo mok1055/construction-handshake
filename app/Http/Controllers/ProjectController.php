@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\ProjectStatus;
 use Illuminate\Http\Request;
 use App\Project;
 use App\ProjectUser;
 use Auth;
-use Carbon\Carbon;
+use App\Http\Requests\ProjectRequest;
 
 
 class ProjectController extends Controller
@@ -19,27 +20,21 @@ class ProjectController extends Controller
 
     public function create()
     {
-        //
+        return view('create-project', ['statuses' => ProjectStatus::all()]);
     }
 
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        if ($request->start_date < Carbon::now()) {
-            return 'start date cannot be in the past';
-        }
-        if ($request->end_date < $request->start_date) {
-            return 'end date cannot be before the start date';
-        }
         $project = Project::create(array(
-            'name'        => $request->name,
-            'description' => $request->description,
-            'type'        => $request->type,
-            'start_date'  => $request->start_date,
-            'end_date'    => $request->end_date
+            'name'          => $request->name,
+            'description'   => $request->description,
+            //'status_id'     => ProjectStatus::where('name', $request->status)->first()->id,
+            'start_date'    => $request->start_date,
+            'end_date'      => $request->end_date
         ));
         ProjectUser::create(array(
-            'user_id'     => Auth::user()->user_id,
-            'project_id'  => $project->project_id
+            'user_id'     => Auth::user()->id,
+            'project_id'  => $project->id
         ));
         return redirect('dashboard');
     }
@@ -51,13 +46,22 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
-        //
+        return view('edit-project', ['project' => Project::find($id),
+                                           'statuses' => ProjectStatus::all()]);
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, $id)
     {
-        //
+        $project = Project::find($id);
+        $project->update(array(
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'status_id'     => ProjectStatus::find($request->status)->id,
+            'start_date'    => $request->start_date,
+            'end_date'      => $request->end_date
+        ));
+        return redirect('dashboard');
     }
 
     public function destroy($id)

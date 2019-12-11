@@ -13,22 +13,44 @@ class ProjectTableSeeder extends Seeder
      */
     public function run()
     {
-        //project (id=1)
+        //Project (id=1)
         Project::create([
-            'name'                    => 'test_project1',
-            'description'             => 'test_beschrijving1',
-            'type'                    => 'test_type1',
-            'start_date'              =>  Carbon::parse('21-11-2019'),
-            'end_date'                =>  Carbon::parse('05-01-2020'),
+            'name'        => 'Sanering tankstation',
+            'description' => 'Dit project gaat over de sanering van het tankstation in eindhoven',
+            'start_date'  => Carbon::parse('23-11-2019'),
+            'end_date'    => Carbon::parse('15-03-2020'),
         ]);
 
-        //project (id=1)
+        //Project (id=2)
         Project::create([
-            'name'                    => 'test_project2',
-            'description'             => 'test_beschrijving2',
-            'type'                    => 'test_type2',
-            'start_date'              =>  Carbon::parse('21-11-2020'),
-            'end_date'                =>  Carbon::parse('05-01-2021'),
+            'name'        => 'Aanbouw Ah supermarkt',
+            'description' => 'Dit project gaat over uitbreiding van de Albert hein in Breda',
+            'start_date'  => Carbon::parse('01-11-2019'),
+            'end_date'    => Carbon::parse('25-04-2020'),
+        ]);
+
+        //Project (id=3)
+        Project::create([
+            'name'        => 'Voegwerk Westerkerk',
+            'description' => 'Dit project gaat over het voegwerk van de westerkerk te Amsterdam',
+            'start_date'  => Carbon::parse('10-10-2019'),
+            'end_date'    => Carbon::parse('08-05-2020'),
+        ]);
+
+        //Project (id=4)
+        Project::create([
+            'name'        => 'Herstel brandschade ING-Bank',
+            'description' => 'Dit project gaat over herstel werkzaamheden bij ING-Bank in Assen',
+            'start_date'  => Carbon::parse('01-02-2020'),
+            'end_date'    => Carbon::parse('25-04-2020'),
+        ]);
+
+        //Project (id=5)
+        Project::create([
+            'name'        => 'Stucwerk project',
+            'description' => 'Dit project gaat over stucwerk in Woerden',
+            'start_date'  => Carbon::parse('01-03-2020'),
+            'end_date'    => Carbon::parse('25-06-2020'),
         ]);
     }
 }

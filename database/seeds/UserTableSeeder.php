@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //user (id=3)
+        //user (id=1)
         User::create([
             'first_name'            => 'Mohamed',
             'last_name'             => 'Kichouhi',
