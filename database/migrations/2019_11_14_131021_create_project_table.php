@@ -17,15 +17,14 @@ class CreateProjectTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->unsignedBigInteger('type_id');
-            $table->string('status')->default('Open');
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();
 
-            $table->foreign('type_id')
+            $table->foreign('status_id')
                 ->references('id')
-                ->on('project_type');
+                ->on('project_status');
         });
     }
 

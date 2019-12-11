@@ -27,22 +27,14 @@
             <label for="description">Project beschrijving:</label>
             <textarea class="form-control" name="description"></textarea>
         </div>
-        <div class="form-group">
-            <label for="description">Project type:</label><br>
-            <select class="browser-default custom-select dropdown-primary" name="type">
-                @foreach($types as $type)
-                    <option value="{{ $type->name }}">{{ $type->name }}</option>
-                @endforeach
-            </select>
-        </div>
         <br>
         <div class="form-group">
-            <label for="description">Begindatum:</label><br>
+            <label for="start_date">Begindatum:</label><br>
             <input type="date" name="start_date">
         </div>
         <br>
         <div class="form-group">
-            <label for="description">Einddatum:</label><br>
+            <label for="end_date">Einddatum:</label><br>
             <input type="date" name="end_date">
         </div>
         <br><br>
