@@ -20,16 +20,16 @@
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <div class="form-group">
-            <label for="name">Project naam:</label>
+            <label for="name">Project naam *</label>
             <input type="text" class="form-control" name="name" value="{{ $project->name }}"/>
         </div>
 
         <div class="form-group">
-            <label for="description">Project beschrijving:</label>
+            <label for="description">Project beschrijving *</label>
             <textarea class="form-control" name="description">{{ $project->description }}</textarea>
         </div>
         <div class="form-group">
-            <label for="status">Project status:</label><br>
+            <label for="status">Project status *</label><br>
             <select class="browser-default custom-select dropdown-primary" name="status">
                 @foreach($statuses as $status)
                     <option value="{{ $status->id }}">{{ $status->name }}</option>
@@ -38,12 +38,12 @@
         </div>
         <br>
         <div class="form-group">
-            <label for="start_date">Begindatum:</label><br>
+            <label for="start_date">Begindatum *</label><br>
             <input type="date" name="start_date" value="{{ $project->start_date->format('Y-m-d') }}">
         </div>
         <br>
         <div class="form-group">
-            <label for="end_date">Einddatum:</label><br>
+            <label for="end_date">Einddatum *</label><br>
             <input type="date" name="end_date" value="{{ $project->end_date->format('Y-m-d') }}">
         </div>
         <br><br>
