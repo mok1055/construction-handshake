@@ -550,10 +550,9 @@
   /* [Sidebar] */
   
   .sidebar {
-    height: 95%;
+    height: 100%;
     width: 10%;
-    position: fixed;
-    z-index: -1;
+    position: absolute;
     margin-top: 0;
     left: 0;
     background-color: #2d2e2e;
