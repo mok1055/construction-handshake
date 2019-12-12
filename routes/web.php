@@ -22,6 +22,10 @@ Route::get('dashboard', 'DashboardController@index');
 
 Route::get('profile', 'ProfileController@index');
 
+Route::get('invoice', 'InvoiceController@index');
+
+Route::get('invoice/add', 'InvoiceController@createInvoice');
+
 Route::get('dashboard/project/add', 'DashboardController@createProject');
 
 Route::resource('projects', 'ProjectController');
