@@ -20,11 +20,17 @@ class ProjectController extends Controller
 
     public function create()
     {
+        if (Auth::user()->role() != 'Opdrachtgever') {
+            return abort(403);
+        }
         return view('create-project', ['statuses' => ProjectStatus::all()]);
     }
 
     public function store(ProjectRequest $request)
     {
+        if (Auth::user()->role() != 'Opdrachtgever') {
+            return abort(403);
+        }
         $project = Project::create(array(
             'name'          => $request->name,
             'description'   => $request->description,
@@ -46,6 +52,9 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
+        if (Auth::user()->role() != 'Opdrachtgever') {
+            return abort(403);
+        }
         return view('edit-project', ['project' => Project::find($id),
                                            'statuses' => ProjectStatus::all()]);
     }
@@ -53,6 +62,9 @@ class ProjectController extends Controller
 
     public function update(ProjectRequest $request, $id)
     {
+        if (Auth::user()->role() != 'Opdrachtgever') {
+            return abort(403);
+        }
         $project = Project::find($id);
         $project->update(array(
             'name'          => $request->name,
