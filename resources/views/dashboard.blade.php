@@ -5,10 +5,12 @@
     <div class="planning">
         <div></div>
         <h2>Projecten</h2><br>
-        <button onclick="location.href='{{ route('projects.create') }}'" type="button" class="btn btn-success">
-            Project toevoegen
-        </button>
-        <br><br>
+        @if (Auth::user()->role() == 'Opdrachtgever')
+            <button onclick="location.href='{{ route('projects.create') }}'" type="button" class="btn btn-success">
+                Project toevoegen
+            </button>
+            <br><br>
+        @endif
         <table class="projects">
             <tr>
                 <th>Naam</th>
@@ -27,12 +29,21 @@
                     <td>{{$project->status()}}</td>
                     <td>{{$project->start_date->format('d-m-Y')}}</td>
                     <td>{{$project->end_date->format('d-m-Y')}}</td>
-                    <td>
-                        <button onclick="location.href='{{ route('projects.edit', $project->id) }}'">
-                            Wijzigen
-                        </button>
-                        <br><br>
-                    </td>
+                    @if (Auth::user()->role() == 'Opdrachtgever')
+                        <td>
+                            <button onclick="location.href='{{ route('projects.edit', $project->id) }}'">
+                                Wijzigen
+                            </button>
+                            <br><br>
+                        </td>
+                    @else
+                        <td>
+                            <button onclick="location.href='{{ route('projects.show', $project->id) }}'">
+                                Weergeven
+                            </button>
+                            <br><br>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </table>
