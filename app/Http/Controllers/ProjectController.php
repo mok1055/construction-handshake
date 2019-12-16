@@ -20,7 +20,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        if (Auth::user()->role() != 'Opdrachtgever') {
+        if (Auth::user() != null && Auth::user()->role() != 'Opdrachtgever') {
             return abort(403);
         }
         return view('create-project', ['statuses' => ProjectStatus::all()]);
@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        if (Auth::user()->role() != 'Opdrachtgever') {
+        if (Auth::user() != null && Auth::user()->role() != 'Opdrachtgever') {
             return abort(403);
         }
         $project = Project::create(array(
@@ -47,12 +47,12 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        return Project::all()->where('project_id', $id)->first();
+        return view('view-project', ['project' => Project::find($id)]);
     }
 
     public function edit($id)
     {
-        if (Auth::user()->role() != 'Opdrachtgever') {
+        if (Auth::user() != null && Auth::user()->role() != 'Opdrachtgever') {
             return abort(403);
         }
         return view('edit-project', ['project' => Project::find($id),
@@ -62,7 +62,7 @@ class ProjectController extends Controller
 
     public function update(ProjectRequest $request, $id)
     {
-        if (Auth::user()->role() != 'Opdrachtgever') {
+        if (Auth::user() != null && Auth::user()->role() != 'Opdrachtgever') {
             return abort(403);
         }
         $project = Project::find($id);
