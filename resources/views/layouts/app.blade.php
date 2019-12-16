@@ -46,7 +46,7 @@
                 </ul>
             @else
                 <script>
-                    window.location = "/main";
+                    window.location = "/home";
                 </script>
             @endif
         </div>
