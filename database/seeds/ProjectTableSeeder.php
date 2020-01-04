@@ -17,7 +17,6 @@ class ProjectTableSeeder extends Seeder
         Project::create([
             'name'                    => 'test_project1',
             'description'             => 'test_beschrijving1',
-            'type_id'                 => '1',
             'start_date'              =>  Carbon::parse('21-11-2019'),
             'end_date'                =>  Carbon::parse('05-01-2020'),
         ]);
@@ -26,7 +25,6 @@ class ProjectTableSeeder extends Seeder
         Project::create([
             'name'                    => 'test_project2',
             'description'             => 'test_beschrijving2',
-            'type_id'                 => '2',
             'start_date'              =>  Carbon::parse('21-11-2020'),
             'end_date'                =>  Carbon::parse('05-01-2021'),
         ]);

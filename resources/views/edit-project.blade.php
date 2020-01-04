@@ -29,21 +29,21 @@
             <textarea class="form-control" name="description">{{ $project->description }}</textarea>
         </div>
         <div class="form-group">
-            <label for="description">Project type:</label><br>
-            <select class="browser-default custom-select dropdown-primary" name="type">
-                @foreach($types as $type)
-                    <option value="{{ $type->name }}">{{ $type->name }}</option>
+            <label for="status">Project status:</label><br>
+            <select class="browser-default custom-select dropdown-primary" name="status">
+                @foreach($statuses as $status)
+                    <option value="{{ $status->id }}">{{ $status->name }}</option>
                 @endforeach
             </select>
         </div>
         <br>
         <div class="form-group">
-            <label for="description">Begindatum:</label><br>
+            <label for="start_date">Begindatum:</label><br>
             <input type="date" name="start_date" value="{{ $project->start_date->format('Y-m-d') }}">
         </div>
         <br>
         <div class="form-group">
-            <label for="description">Einddatum:</label><br>
+            <label for="end_date">Einddatum:</label><br>
             <input type="date" name="end_date" value="{{ $project->end_date->format('Y-m-d') }}">
         </div>
         <br><br>

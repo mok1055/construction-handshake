@@ -13,7 +13,6 @@
             <tr>
                 <th>Naam</th>
                 <th>Beschrijving</th>
-                <th>Type</th>
                 <th>Status</th>
                 <th>Start datum</th>
                 <th>Eind datum</th>
@@ -23,8 +22,7 @@
                 <tr>
                     <td>{{$project->name}}</td>
                     <td>{{$project->description}}</td>
-                    <td>{{$project->type()->name}}</td>
-                    <td>{{$project->status}}</td>
+                    <td>{{$project->status()}}</td>
                     <td>{{$project->start_date->format('d-m-Y')}}</td>
                     <td>{{$project->end_date->format('d-m-Y')}}</td>
                     <td>

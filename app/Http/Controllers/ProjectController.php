@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ProjectType;
+use App\ProjectStatus;
 use Illuminate\Http\Request;
 use App\Project;
 use App\ProjectUser;
@@ -20,17 +20,17 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('create-project', ['types' => ProjectType::all()]);
+        return view('create-project', ['statuses' => ProjectStatus::all()]);
     }
 
     public function store(ProjectRequest $request)
     {
         $project = Project::create(array(
-            'name'        => $request->name,
-            'description' => $request->description,
-            'type_id'     => ProjectType::where('name', $request->type)->first()->id,
-            'start_date'  => $request->start_date,
-            'end_date'    => $request->end_date
+            'name'          => $request->name,
+            'description'   => $request->description,
+            //'status_id'     => ProjectStatus::where('name', $request->status)->first()->id,
+            'start_date'    => $request->start_date,
+            'end_date'      => $request->end_date
         ));
         ProjectUser::create(array(
             'user_id'     => Auth::user()->id,
@@ -47,7 +47,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         return view('edit-project', ['project' => Project::find($id),
-                                           'types' => ProjectType::all()]);
+                                           'statuses' => ProjectStatus::all()]);
     }
 
 
@@ -55,11 +55,11 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         $project->update(array(
-            'name'        => $request->name,
-            'description' => $request->description,
-            'type_id'     => ProjectType::where('name', $request->type)->first()->id,
-            'start_date'  => $request->start_date,
-            'end_date'    => $request->end_date
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'status_id'     => ProjectStatus::find($request->status)->id,
+            'start_date'    => $request->start_date,
+            'end_date'      => $request->end_date
         ));
         return redirect('dashboard');
     }

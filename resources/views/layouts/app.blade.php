@@ -35,7 +35,7 @@
             @if(isset(Auth::user()->email))
                 <div class="header-info">
                     <h3>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
-                    <a href="{{ url('/logout') }}">Logout</a>
+                    <h5><a href="{{ url('/logout') }}">Logout</a></h5>
                 </div>
             @else
                 <script>
