@@ -16,7 +16,7 @@ class ProjectTableSeeder extends Seeder
         //Project (id=1)
         Project::create([
             'name'        => 'Sanering tankstation',
-            'description' => 'Dit project gaat over de sanering van het tankstation in eindhoven',
+            'description' => 'Dit project gaat over de sanering van het tankstation in Eindhoven',
             'start_date'  => Carbon::parse('23-11-2019'),
             'end_date'    => Carbon::parse('15-03-2020'),
         ]);

@@ -41,7 +41,7 @@
                     </li>
                     <br>
                     <li>
-                        <label class="logout"><a href="{{ url('/logout') }}" class="logout">Logout</a></label>
+                        <label class="logout"><a href="{{ url('/logout') }}" class="logout">Log uit</a></label>
                     </li>
                 </ul>
             @else

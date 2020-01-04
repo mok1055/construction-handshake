@@ -33,8 +33,7 @@ class ProjectController extends Controller
         }
         $project = Project::create(array(
             'name'          => $request->name,
-            'description'   => $request->description,
-            //'status_id'     => ProjectStatus::where('name', $request->status)->first()->id,
+            'description'   => $request->description == null ? "" : $request->description,
             'start_date'    => $request->start_date,
             'end_date'      => $request->end_date
         ));
@@ -68,7 +67,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $project->update(array(
             'name'          => $request->name,
-            'description'   => $request->description,
+            'description'   => $request->description == null ? "" : $request->description,
             'status_id'     => ProjectStatus::find($request->status)->id,
             'start_date'    => $request->start_date,
             'end_date'      => $request->end_date
