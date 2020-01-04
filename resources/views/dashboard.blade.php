@@ -12,6 +12,7 @@
         <table class="projects">
             <tr>
                 <th>Naam</th>
+                <th>Rol</th>
                 <th>Beschrijving</th>
                 <th>Status</th>
                 <th>Start datum</th>
@@ -21,6 +22,7 @@
             @foreach($projects as $project)
                 <tr>
                     <td>{{$project->name}}</td>
+                    <td>{{ Auth::user()->role() }}</td>
                     <td>{{$project->description}}</td>
                     <td>{{$project->status()}}</td>
                     <td>{{$project->start_date->format('d-m-Y')}}</td>
