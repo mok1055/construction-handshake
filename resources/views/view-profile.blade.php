@@ -3,8 +3,10 @@
 <body>
 <div class="content">
     <h3>Profiel</h3><br>
-    <form>
-        <div class="form-group">
+    <form action="{{ route('profile.update') }}" method="POST">
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
+        <div class=" form-group">
             <label id="first_name">Voornaam:</label>
             <label class="form-control">{{ Auth::user()->first_name }}</label>
         </div>

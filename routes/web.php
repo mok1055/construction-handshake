@@ -13,10 +13,15 @@
 
 Route::get('/home', 'MainController@index');
 
-Route::post('/home/checklogin', 'MainController@checkLogin');
 
-Route::get('/logout', 'MainController@logout');
+Route::post('home/checklogin', 'MainController@checkLogin');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('logout', 'MainController@logout');
 
-Route::resource('/projects', 'ProjectController');
+Route::get('dashboard', 'DashboardController@index');
+
+Route::get('profile', 'ProfileController@index');
+
+Route::post('profile.update', 'ProfileController@update');
+
+Route::resource('projects', 'ProjectController');
