@@ -3,20 +3,20 @@
 <body>
 <div class="content">
     <h3>Profiel</h3><br>
-    <form action="{{ route('profile.update') }}" method="POST">
+    <form action="{{ url('profile/update') }}" method="POST">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <div class=" form-group">
             <label id="first_name">Voornaam:</label>
-            <label class="form-control">{{ Auth::user()->first_name }}</label>
+            <input type="text" class="form-control" name="first_name" value="{{ Auth::user()->first_name }}"/>
         </div>
         <div class="form-group">
             <label id="last_name">Achternaam:</label>
-            <label class="form-control">{{ Auth::user()->last_name }}</label>
+            <input type="text" class="form-control" name="last_name" value="{{ Auth::user()->last_name }}"/>
         </div>
         <div class="form-group">
-            <label id="email">Email:</label>
-            <label class="form-control">{{  Auth::user()->email}}</label>
+            <label id="email">E-mail:</label>
+            <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}"/>
         </div>
         <br>
         <div class="form-group">

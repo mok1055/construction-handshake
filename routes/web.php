@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/home', 'MainController@index');
+Route::get('/', 'MainController@index');
 
 
 Route::post('home/checklogin', 'MainController@checkLogin');
@@ -22,6 +22,6 @@ Route::get('dashboard', 'DashboardController@index');
 
 Route::get('profile', 'ProfileController@index');
 
-Route::post('profile.update', 'ProfileController@update');
+Route::put('profile/update', 'ProfileController@update');
 
 Route::resource('projects', 'ProjectController');

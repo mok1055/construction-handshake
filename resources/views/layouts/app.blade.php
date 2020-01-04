@@ -36,12 +36,11 @@
                 <img class="logo" src="{{ asset('images/icons/logo-transparent.png') }}">
                 <ul>
                     <li>
-                        <label
-                            class="welcome">Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</label>
+                        <label class="welcome"><a href="{{ url('profile') }}" class="welcome">Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a></label>
                     </li>
                     <br>
                     <li>
-                        <label class="logout"><a href="{{ url('/logout') }}" class="logout">Log uit</a></label>
+                        <label class="logout"><a href="{{ url('logout') }}" class="logout">Log uit</a></label>
                     </li>
                 </ul>
             @else

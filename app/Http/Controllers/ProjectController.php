@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ProjectStatus;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProjectRequest;
 use App\Project;
+use App\ProjectStatus;
 use App\ProjectUser;
 use Auth;
-use App\Http\Requests\ProjectRequest;
 
 
 class ProjectController extends Controller
