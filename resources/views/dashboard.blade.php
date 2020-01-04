@@ -19,9 +19,7 @@
                 <th>Status</th>
                 <th>Start datum</th>
                 <th>Eind datum</th>
-                @if (Auth::user()->role() == 'Opdrachtgever')
-                    <th></th>
-                @endif
+                <th></th>
             </tr>
             @foreach($projects as $project)
                 <tr>
@@ -35,6 +33,13 @@
                         <td>
                             <button onclick="location.href='{{ route('projects.edit', $project->id) }}'">
                                 Wijzigen
+                            </button>
+                            <br><br>
+                        </td>
+                    @else
+                        <td>
+                            <button onclick="location.href='{{ route('projects.show', $project->id) }}'">
+                                Weergeven
                             </button>
                             <br><br>
                         </td>

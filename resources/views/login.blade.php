@@ -34,7 +34,7 @@
         <div class="wrap-login100">
             @if(isset(Auth::user()->email))
                 <script>
-                    window.location = "dashboard";
+                    window.location = "/dashboard";
                 </script>
             @endif
 
