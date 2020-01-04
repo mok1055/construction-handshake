@@ -63,6 +63,7 @@ function showCalendar(month, year) {
 
             else {
                 let cellButton = document.createElement("button");
+                cellButton.className = "calendar-button";
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {

@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //user (id=3)
+        //user (id=1)
         User::create([
             'first_name'            => 'Mohamed',
             'last_name'             => 'Kichouhi',
@@ -20,11 +20,20 @@ class UserTableSeeder extends Seeder
             'password'              =>  Hash::make('test123')
         ]);
         //user (id=2)
+
         User::create([
             'first_name'            => 'Diesmer',
             'last_name'             => 'Hensbergen',
             'email'                 => 'diesmer.hensbergen@student.hu.nl',
             'password'              =>  Hash::make('test1234')
+        ]);
+        //user (id=3)
+        User::create([
+            'first_name'            => 'Testgebruiker',
+            'last_name'             => '',
+            'email'                 => 'test@test.nl',
+            'password'              =>  Hash::make('test'),
+            'role_id'               =>  2
         ]);
     }
 }
