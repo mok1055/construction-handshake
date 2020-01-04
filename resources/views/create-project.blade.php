@@ -19,22 +19,22 @@
     <form action="{{ route('projects.store') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="name">Project naam:</label>
+            <label for="name">Project naam *</label>
             <input type="text" class="form-control" name="name"/>
         </div>
 
         <div class="form-group">
-            <label for="description">Project beschrijving:</label>
+            <label for="description">Project beschrijving *</label>
             <textarea class="form-control" name="description"></textarea>
         </div>
         <br>
         <div class="form-group">
-            <label for="start_date">Begindatum:</label><br>
+            <label for="start_date">Begindatum *</label><br>
             <input type="date" name="start_date">
         </div>
         <br>
         <div class="form-group">
-            <label for="end_date">Einddatum:</label><br>
+            <label for="end_date">Einddatum *</label><br>
             <input type="date" name="end_date">
         </div>
         <br><br>
