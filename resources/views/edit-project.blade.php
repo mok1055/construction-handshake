@@ -25,12 +25,20 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Project beschrijving *</label>
+            <label for="description">Project beschrijving</label>
             <textarea class="form-control" name="description">{{ $project->description }}</textarea>
         </div>
+        <div class="add-person">
+            <label for="name">Persoon toevoegen</label>
+            <div class="input-group">
+                <input type="email" class="form-control" name="email"/>
+                <span class="input-group-btn"><button class="btn btn-success" name="action" value="add-person">Voeg toe aan project</button></span>
+            </div>
+        </div>
+
         <div class="form-group">
             <label for="status">Project status *</label><br>
-            <select class="browser-default custom-select dropdown-primary" name="status">
+            <select class="browser-default custom-select dropdown-primary" name="status" value="0">
                 @foreach($statuses as $status)
                     <option value="{{ $status->id }}">{{ $status->name }}</option>
                 @endforeach
@@ -48,9 +56,10 @@
         </div>
         <br><br>
         <div class="form-group">
-            <button class="btn btn-success">Wijzigingen opslaan</button>
+            <button class="btn btn-success" name="action" value="update">Wijzigingen opslaan</button>
             <br><br>
         </div>
+
     </form>
 </div>
 </body>

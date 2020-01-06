@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ProjectStatus;
-use Illuminate\Http\Request;
-use App\Project;
-use App\ProjectUser;
-use Auth;
 use App\Http\Requests\ProjectRequest;
+use App\Project;
+use App\ProjectStatus;
+use App\ProjectUser;
+use App\User;
+use Auth;
 
 
 class ProjectController extends Controller
@@ -38,8 +38,8 @@ class ProjectController extends Controller
             'end_date'      => $request->end_date
         ));
         ProjectUser::create(array(
-            'user_id'     => Auth::user()->id,
-            'project_id'  => $project->id
+            'user_id' => Auth::user()->id,
+            'project_id' => $project->id
         ));
         return redirect('dashboard');
     }
@@ -55,7 +55,7 @@ class ProjectController extends Controller
             return abort(403);
         }
         return view('edit-project', ['project' => Project::find($id),
-                                           'statuses' => ProjectStatus::all()]);
+            'statuses' => ProjectStatus::all()]);
     }
 
 
@@ -64,14 +64,26 @@ class ProjectController extends Controller
         if (Auth::user() != null && Auth::user()->role() != 'Opdrachtgever') {
             return abort(403);
         }
+        $type = $request->input('action');
         $project = Project::find($id);
-        $project->update(array(
-            'name'          => $request->name,
-            'description'   => $request->description == null ? "" : $request->description,
-            'status_id'     => ProjectStatus::find($request->status)->id,
-            'start_date'    => $request->start_date,
-            'end_date'      => $request->end_date
-        ));
+        if ($type == 'update') {
+            $project->update(array(
+                'name' => $request->name,
+                'description' => $request->description == null ? "" : $request->description,
+                'status_id' => ProjectStatus::find($request->status)->id,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date
+            ));
+        } else {
+            $user = User::where('email', 'like', $request->email)->first();
+            if ($user == null) {
+                return back()->withErrors(['De gebruiker bestaat niet!']);
+            }
+            ProjectUser::create(array(
+                'user_id'    => $user->id,
+                'project_id' => $id
+            ));
+        }
         return redirect('dashboard');
     }
 

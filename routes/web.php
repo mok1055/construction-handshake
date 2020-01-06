@@ -20,3 +20,4 @@ Route::get('/logout', 'MainController@logout');
 Route::get('/dashboard', 'DashboardController@index');
 
 Route::resource('/projects', 'ProjectController');
+Route::patch('/projects/{id}/add-person', 'ProjectController@addPerson');

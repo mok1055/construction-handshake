@@ -26,6 +26,7 @@ class ProjectRequest extends FormRequest
         return [
             'name'            => 'required',
             'start_date'      => 'required|date|date_format:Y-m-d|before:end_date',
+            'end_date'        => 'required'
         ];
     }
 
