@@ -2,6 +2,10 @@
 
 <body>
 <div class="content">
+    <button class="btn btn-secondary" onclick="location.href='{{ url('dashboard') }}'">
+        Terug naar dashboard
+    </button>
+    <br><br>
     <h3>Profiel</h3><br>
     <form action="{{ url('profile/update') }}" method="POST">
         {{ csrf_field() }}
