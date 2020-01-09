@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,41 +25,51 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/calendar.css') }}">
     <!--===============================================================================================-->
 </head>
 
 <body>
-@section('topbar')
-    <header>
-        <div class="topbar">
-            @if(isset(Auth::user()->email))
-                <img class="logo" src="{{ asset('images/icons/logo-transparent.png') }}">
-                <ul>
-                    <li>
-                        <label class="welcome"><a href="{{ url('profile') }}" class="welcome">Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a></label>
-                    </li>
-                    <br>
-                    <li>
-                        <label class="logout"><a href="{{ url('logout') }}" class="logout">Log uit</a></label>
-                    </li>
-                </ul>
-            @else
-                <script>
-                    window.location = "/home";
-                </script>
-            @endif
-        </div>
-    </header>
-@show
-
-@section('sidebar')
-    <div class="sidebar">
-        <a class="active" href="#home">Dashboard</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+<header>
+    <div class="topbar">
+        @if(isset(Auth::user()->email))
+            <div class="header-info">
+                <h3>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
+                <a href="{{ url('/logout') }}">Logout</a>
+            </div>
+        @else
+            <script>
+                window.location = "/main";
+            </script>
+        @endif
     </div>
-@show
+</header>
+<!-- The sidebar -->
+<div class="sidebar">
+    <a class="active" href="#home">Dashboard</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+</div>
+
+<!-- Page content -->
+<div class="content">
+    <h3>Factuur toevoegen</h3><br>
+    <form method="post">
+        {{ csrf_field() }}
+        <div class="form-group">
+            <label for="description">Factuur omschrijving:</label>
+            <input type="text" class="form-control" name="description"/>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="amount">Bedrag:</label>
+            <textarea class="form-control" name="amount"></textarea>
+        </div>
+        <br><br>
+        <div class="form-group">
+            <button class="btn btn-success">Factuur toevoegen</button>
+            <br><br>
+        </div>
+    </form>
+</form>
 </body>
-</html>
