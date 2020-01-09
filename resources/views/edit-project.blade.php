@@ -31,9 +31,11 @@
         <div class="add-person">
             <label for="name">Persoon toevoegen</label>
             <div class="input-group">
-                <input type="email" class="form-control" name="email"/>
+                <input type="email" class="form-control" size="34" name="email"/>
                 <span class="input-group-btn"><button class="btn btn-success" name="action" value="add-person">Voeg toe aan project</button></span>
             </div>
+            <br>
+            <button  class="btn btn-secondary" onclick="location.href='{{ url('projects/'.$project->id.'/view-persons') }}'" type="button">Personen overzicht inzien</button>
         </div>
 
         <div class="form-group">

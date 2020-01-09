@@ -92,4 +92,10 @@ class ProjectController extends Controller
         //
     }
 
+    public function viewPersons($id)
+    {
+        return view('view-persons', ['users' => Project::find($id)->users()]);
+    }
+
+
 }
