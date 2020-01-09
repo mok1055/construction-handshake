@@ -595,6 +595,13 @@ img.logo {
     font-family: Poppins-Regular;
 }
 
+div.add-person {
+    margin-left: 13%;
+    margin-top: 0%;
+    position: fixed;
+    height: auto;
+}
+
 .sidebar a.active {
     background-color: #188aa3;
     color: white;

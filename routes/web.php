@@ -13,10 +13,11 @@
 
 Route::get('/home', 'MainController@index');
 
-Route::post('/home/checklogin', 'MainController@checkLogin');
+Route::post('home/checklogin', 'MainController@checkLogin');
 
-Route::get('/logout', 'MainController@logout');
+Route::get('logout', 'MainController@logout');
 
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('dashboard', 'DashboardController@index');
 
-Route::resource('/projects', 'ProjectController');
+Route::resource('projects', 'ProjectController');
+Route::get('projects/{id}/view-persons/', 'ProjectController@viewPersons');
