@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ProjectUser extends Model
+class ProjectUser extends Pivot
 {
     protected $fillable = [
         'user_id', 'project_id'
@@ -12,14 +12,16 @@ class ProjectUser extends Model
 
     protected $table = 'project_user';
 
-    public static function destroy($id)
-    {
-        $song = $this->model->find($id);
-        return $song->delete();
+    public function users() {
+        return $this->belongsToMany('App\User', 'project_user');
+    }
+
+    public function projects() {
+        return $this->belongsToMany('App\Project', 'project_user');
     }
 
     public static function find($projectId, $userId) {
         return ProjectUser::where('project_id', $projectId)->
-                             where('user_id', $userId)->get();
+                            where('user_id', $userId)->get();
     }
 }

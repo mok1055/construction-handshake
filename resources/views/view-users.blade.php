@@ -7,7 +7,12 @@
         Terug naar project
     </button>
     <br><br>
-    <h3>Personen overzicht</h3><br>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+    <h3>{{ $project->name }} - Personen overzicht</h3><br>
     <table class="projects">
         <tr>
             <th>Rol</th>

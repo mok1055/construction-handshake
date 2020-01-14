@@ -44,7 +44,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Project', 'project_user', 'user_id', 'project_id');
     }
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo('App\UserRole')->first()->name;
     }
 }

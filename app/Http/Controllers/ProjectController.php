@@ -32,10 +32,10 @@ class ProjectController extends Controller
             return abort(403);
         }
         $project = Project::create(array(
-            'name'          => $request->name,
-            'description'   => $request->description == null ? "" : $request->description,
-            'start_date'    => $request->start_date,
-            'end_date'      => $request->end_date
+            'name' => $request->name,
+            'description' => $request->description == null ? "" : $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
         ));
         ProjectUser::create(array(
             'user_id' => Auth::user()->id,
@@ -84,7 +84,7 @@ class ProjectController extends Controller
                 return back()->withErrors(['De gebruiker zit al in het project!']);
             }
             ProjectUser::create(array(
-                'user_id'    => $user->id,
+                'user_id' => $user->id,
                 'project_id' => $id
             ));
             return back()->with('success', 'De gebruiker is toegevoegd aan het project!');
@@ -98,23 +98,25 @@ class ProjectController extends Controller
 
     public function viewUsers($id)
     {
-        $project = Project::find($id)->first();
+        $project = Project::find($id);
         if ($project != null) {
             return view('view-users', ['project' => $project]);
         }
         return back();
     }
 
-    public function deleteUser($projectId, $userId) {
-        $project = Project::find($projectId)->first();
+    public function deleteUser($projectId, $userId)
+    {
+        $project = Project::find($projectId);
         if ($project != null) {
-            $user = ProjectUser::find($projectId, $userId)->first();
-            if ($user != null) {
-                $user->delete();
-                return back();
+            $projectUser = ProjectUser::find($projectId, $userId)->first();
+            if ($projectUser != null) {
+                $projectUser->where('user_id', $userId)->where('project_id', $projectId)->delete();
+                return back()->with('success', 'De gebruiker is verwijderd van het project!');
             }
+            return back();
         }
-        //return viewUsers($projectId);
+        return back();
     }
 
 
