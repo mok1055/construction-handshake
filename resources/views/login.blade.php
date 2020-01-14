@@ -54,7 +54,7 @@
             <form class="login100-form validate-form" method="POST" action="{{ url('checklogin') }}">
                 {{ csrf_field() }}
                 <span class="login100-form-title p-b-48">
-                        <img src="images/icons/logo.png">
+                        <img src="images/icons/logo2.png">
                     </span>
 
                 <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">

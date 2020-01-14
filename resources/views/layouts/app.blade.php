@@ -33,7 +33,7 @@
     <header>
         <div class="topbar">
             @if(isset(Auth::user()->email))
-                <img class="logo" src="{{ asset('images/icons/logo-transparent.png') }}">
+                <a href="{{ url('dashboard') }}"><img class="logo" src="{{ asset('images/icons/logo2.png') }}"></a>
                 <ul>
                     <li>
                         <label class="welcome"><a href="{{ url('profile') }}" class="welcome">Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a></label>
