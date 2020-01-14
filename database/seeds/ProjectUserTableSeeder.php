@@ -17,9 +17,5 @@ class ProjectUserTableSeeder extends Seeder
             'user_id'                => 1,
             'project_id'             => 1
         ]);
-        ProjectUser::create([
-            'user_id'                => 3,
-            'project_id'             => 1
-        ]);
     }
 }

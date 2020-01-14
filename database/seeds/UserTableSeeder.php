@@ -25,7 +25,8 @@ class UserTableSeeder extends Seeder
             'first_name'            => 'Diesmer',
             'last_name'             => 'Hensbergen',
             'email'                 => 'diesmer.hensbergen@student.hu.nl',
-            'password'              =>  Hash::make('test1234')
+            'password'              =>  Hash::make('test1234'),
+            'role_id'               =>  3
         ]);
         //user (id=3)
         User::create([
@@ -33,7 +34,7 @@ class UserTableSeeder extends Seeder
             'last_name'             => '',
             'email'                 => 'test@test.nl',
             'password'              =>  Hash::make('test'),
-            'role_id'               =>  2
+            'role_id'               =>  6
         ]);
     }
 }

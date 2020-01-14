@@ -6,6 +6,11 @@
         Terug naar dashboard
     </button>
     <br><br>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -35,7 +40,7 @@
                 <span class="input-group-btn"><button class="btn btn-success" name="action" value="add-person">Voeg toe aan project</button></span>
             </div>
             <br>
-            <button  class="btn btn-secondary" onclick="location.href='{{ url('projects/'.$project->id.'/view-persons') }}'" type="button">Personen overzicht inzien</button>
+            <button  class="btn btn-secondary" onclick="location.href='{{ url('projects/'.$project->id.'/view-users') }}'" type="button">Personen overzicht inzien</button>
         </div>
 
         <div class="form-group">

@@ -74,17 +74,21 @@ class ProjectController extends Controller
                 'start_date' => $request->start_date,
                 'end_date' => $request->end_date
             ));
+            return redirect('dashboard');
         } else {
             $user = User::where('email', 'like', $request->email)->first();
             if ($user == null) {
                 return back()->withErrors(['De gebruiker bestaat niet!']);
             }
+            if ($project->contains($user)) {
+                return back()->withErrors(['De gebruiker zit al in het project!']);
+            }
             ProjectUser::create(array(
                 'user_id'    => $user->id,
                 'project_id' => $id
             ));
+            return back()->with('success', 'De gebruiker is toegevoegd aan het project!');
         }
-        return redirect('dashboard');
     }
 
     public function destroy($id)
@@ -92,9 +96,25 @@ class ProjectController extends Controller
         //
     }
 
-    public function viewPersons($id)
+    public function viewUsers($id)
     {
-        return view('view-persons', ['users' => Project::find($id)->users()]);
+        $project = Project::find($id)->first();
+        if ($project != null) {
+            return view('view-users', ['project' => $project]);
+        }
+        return back();
+    }
+
+    public function deleteUser($projectId, $userId) {
+        $project = Project::find($projectId)->first();
+        if ($project != null) {
+            $user = ProjectUser::find($projectId, $userId)->first();
+            if ($user != null) {
+                $user->delete();
+                return back();
+            }
+        }
+        //return viewUsers($projectId);
     }
 
 

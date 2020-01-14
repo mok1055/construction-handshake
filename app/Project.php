@@ -16,10 +16,14 @@ class Project extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'project_user', 'project_id', 'user_id');
+        return $this->belongsToMany('App\User', 'project_user', 'project_id', 'user_id')->get();
     }
 
     public function status() {
         return $this->belongsTo('App\ProjectStatus')->first()->name;
+    }
+
+    public function contains(User $user) {
+        return $this->users()->contains($user);
     }
 }

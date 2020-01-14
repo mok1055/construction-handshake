@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/home', 'MainController@index');
+Route::get('/', 'MainController@index');
 
-Route::post('home/checklogin', 'MainController@checkLogin');
+Route::post('checklogin', 'MainController@checkLogin');
 
 Route::get('logout', 'MainController@logout');
 
 Route::get('dashboard', 'DashboardController@index');
 
+Route::get('profile', 'ProfileController@index');
+Route::put('profile/update', 'ProfileController@update');
+
 Route::resource('projects', 'ProjectController');
-Route::get('projects/{id}/view-persons/', 'ProjectController@viewPersons');
+Route::get('projects/{id}/view-users/', 'ProjectController@viewUsers');
+Route::delete('projects/{projectId}/delete-user/{userId}', 'ProjectController@deleteUser');

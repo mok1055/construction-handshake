@@ -51,7 +51,7 @@
                     @endforeach
                 </ul>
             @endif
-            <form class="login100-form validate-form" method="POST" action="{{ url('/home/checklogin') }}">
+            <form class="login100-form validate-form" method="POST" action="{{ url('checklogin') }}">
                 {{ csrf_field() }}
                 <span class="login100-form-title p-b-48">
                         <img src="images/icons/logo.png">
