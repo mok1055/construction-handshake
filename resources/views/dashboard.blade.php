@@ -26,7 +26,7 @@
                     <td>{{$project->name}}</td>
                     <td>{{ Auth::user()->role() }}</td>
                     <td>{{$project->description}}</td>
-                    <td>{{$project->status()}}</td>
+                    <td>{{$project->status()->name}}</td>
                     <td>{{$project->start_date->format('d-m-Y')}}</td>
                     <td>{{$project->end_date->format('d-m-Y')}}</td>
                     @if (Auth::user()->role() == 'Opdrachtgever')

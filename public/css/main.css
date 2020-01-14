@@ -598,7 +598,7 @@ img.logo {
 div.add-person {
     margin-left: 13%;
     margin-top: 0%;
-    position: fixed;
+    position: absolute;
     height: auto;
 }
 

@@ -40,14 +40,21 @@
                 <span class="input-group-btn"><button class="btn btn-success" name="action" value="add-person">Voeg toe aan project</button></span>
             </div>
             <br>
-            <button  class="btn btn-secondary" onclick="location.href='{{ url('projects/'.$project->id.'/view-users') }}'" type="button">Personen overzicht inzien</button>
+            <button class="btn btn-secondary"
+                    onclick="location.href='{{ url('projects/'.$project->id.'/view-users') }}'" type="button">Personen
+                overzicht inzien
+            </button>
         </div>
 
         <div class="form-group">
             <label for="status">Project status *</label><br>
-            <select class="browser-default custom-select dropdown-primary" name="status" value="0">
+            <select class="browser-default custom-select dropdown-primary" name="status" value="1">
                 @foreach($statuses as $status)
-                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                    @if ($status->id == $project->status()->id)
+                        <option selected="selected" value="{{ $status->id }}">{{ $status->name }}</option>
+                    @else
+                        <option value="{{ $status->id }}">{{ $status->name }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>

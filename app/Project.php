@@ -20,7 +20,7 @@ class Project extends Model
     }
 
     public function status() {
-        return $this->belongsTo('App\ProjectStatus')->first()->name;
+        return $this->belongsTo('App\ProjectStatus')->first();
     }
 
     public function contains(User $user) {

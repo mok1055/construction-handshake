@@ -34,5 +34,9 @@
         <label>Einddatum</label><br>
         <input disabled value="{{ $project->end_date->format('d-m-Y') }}">
     </div>
+    <button class="btn btn-secondary"
+            onclick="location.href='{{ url('projects/'.$project->id.'/view-users') }}'" type="button">Personen
+        overzicht inzien
+    </button>
 </div>
 </body>
