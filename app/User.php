@@ -41,11 +41,16 @@ class User extends Authenticatable
 
     public function projects()
     {
-        return $this->belongsToMany('App\Project', 'project_user', 'user_id', 'project_id');
+        return $this->belongsToMany('App\Project', 'project_user', 'user_id', 'project_id')->get();
     }
 
     public function role()
     {
         return $this->belongsTo('App\UserRole')->first()->name;
+    }
+
+    public function canCreateEditProject()
+    {
+        return $this->role() == 'Hoofdaannemer';
     }
 }

@@ -40,7 +40,7 @@ html {
 
 /*---------------------------------------------*/
 
-a {
+/*a {
     font-family: Poppins-Regular;
     font-size: 14px;
     line-height: 1.7;
@@ -50,9 +50,9 @@ a {
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
-}
+}*/
 
-a:focus {
+/*a:focus {
     outline: none !important;
 }
 
@@ -63,7 +63,7 @@ a:hover {
     color: -o-linear-gradient(left, #21d4fd, #b721ff);
     color: -moz-linear-gradient(left, #21d4fd, #b721ff);
     color: linear-gradient(left, #21d4fd, #b721ff);
-}
+}*/
 
 
 /*---------------------------------------------*/
@@ -587,7 +587,6 @@ img.logo {
     height: 100%;
     width: 10%;
     position: absolute;
-    z-index: -1;
     margin-top: 0;
     left: 0;
     background-color: #2d2e2e;
@@ -602,7 +601,7 @@ div.add-person {
     height: auto;
 }
 
-.sidebar a.active {
+/*.sidebar a.active {
     background-color: #188aa3;
     color: white;
 }
@@ -610,7 +609,7 @@ div.add-person {
 .sidebar a:hover:not(.active) {
     background-color: #188aa3;
     color: white;
-}
+}*/
 
 .sidebar a {
     display: block;
@@ -793,6 +792,31 @@ table.projects td.text-right {
 
 table.projects tr:hover td {
     background-color: #f5f5ff;
+}
+
+.sidebar-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+
+.sidebar-list li a {
+    display: block;
+    color: #ffffff;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.sidebar-list li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.sidebar-list li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
 }
 
 @media screen and (max-width: 900px) {

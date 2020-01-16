@@ -13,6 +13,6 @@ class DashboardController extends Controller
         if ($user == null) {
             return redirect('home');
         }
-        return view('dashboard', ['projects' => Auth::user()->projects()->get()]);
+        return view('dashboard', ['projects' => Auth::user()->projects()]);
     }
 }

@@ -1,7 +1,6 @@
-@include('layouts.app')
+@extends('layouts.app')
 
-<body>
-<div class="content">
+@section('content')
     <button class="btn btn-secondary" onclick="location.href='{{ url('dashboard') }}'">
         Terug naar dashboard
     </button>
@@ -28,5 +27,4 @@
             <br><br>
         </div>
     </form>
-</div>
-</body>
+@endsection

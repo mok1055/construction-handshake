@@ -1,11 +1,11 @@
-@include('layouts.app')
+@extends('layouts.app')
 
 <body>
-<div class="content">
+@section('content')
     <div class="planning">
         <div></div>
         <h2>Projecten</h2><br>
-        @if (Auth::user()->role() == 'Opdrachtgever')
+        @if (Auth::user()->canCreateEditProject())
             <button onclick="location.href='{{ route('projects.create') }}'" type="button" class="btn btn-success">
                 Project toevoegen
             </button>
@@ -29,7 +29,7 @@
                     <td>{{$project->status()->name}}</td>
                     <td>{{$project->start_date->format('d-m-Y')}}</td>
                     <td>{{$project->end_date->format('d-m-Y')}}</td>
-                    @if (Auth::user()->role() == 'Opdrachtgever')
+                    @if (Auth::user()->canCreateEditProject())
                         <td>
                             <button onclick="location.href='{{ route('projects.edit', $project->id) }}'">
                                 Wijzigen
@@ -48,6 +48,7 @@
             @endforeach
         </table>
     </div>
+    <!--
     <div class="agenda">
         <h2>Agenda</h2>
         <div class="col-sm-4 col-md-7 col-lg-4 mt-5">
@@ -144,8 +145,9 @@
                     </select></form>
             </div>
         </div>
+        -->
     </div>
-</div>
+@endsection
 
 <script src="../js/calendar.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

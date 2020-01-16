@@ -33,7 +33,7 @@
     <header>
         <div class="topbar">
             @if(isset(Auth::user()->email))
-                <a href="{{ url('dashboard') }}"><img class="logo" src="{{ asset('images/icons/logo2.png') }}"></a>
+                <a href="{{ url('dashboard') }}"><img class="logo" src="{{ asset('images/logo-new.png') }}"></a>
                 <ul>
                     <li>
                         <label class="welcome"><a href="{{ url('profile') }}" class="welcome">Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a></label>
@@ -51,14 +51,27 @@
         </div>
     </header>
 @show
-
 @section('sidebar')
     <div class="sidebar">
-        <a class="active" href="#home">Dashboard</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <ul class="sidebar-list">
+            <li><a href="{{ url('dashboard') }}" class="{{ (Request::is('dashboard')) ? 'active' : '' }}">Home</a></li>
+            <li><a href="{{ url('profile') }}" class="{{ (Request::is('profile')) ? 'active' : '' }}">Mijn profiel</a>
+            </li>
+            <li>
+                <a href="{{ url('projects') }}" class="{{ (Request::is('projects')) ? 'active' : '' }}">Projecten overzicht</a>
+            </li>
+            @if (Auth::user()->canCreateEditProject())
+                <li>
+                    <a href="{{ url('projects/create') }}" class="{{ (Request::is('projects/create')) ? 'active' : '' }}">Project toevoegen</a>
+                </li>
+            @endif
+            <li><a href="#agenda">Agenda</a></li>
+        </ul>
     </div>
 @show
+
+<div class="content">
+    @yield('content')
+</div>
 </body>
 </html>
