@@ -65,7 +65,7 @@
                     <a href="{{ url('projects/create') }}" class="{{ (Request::is('projects/create')) ? 'active' : '' }}">Project toevoegen</a>
                 </li>
             @endif
-            <li><a href="#agenda">Agenda</a></li>
+            <li><a href="{{ url('agenda') }}" class="{{ (Request::is('agenda')) ? 'active' : '' }}">Agenda</a></li>
         </ul>
     </div>
 @show

@@ -51,6 +51,11 @@ class User extends Authenticatable
 
     public function canCreateEditProject()
     {
+        return $this->role() == 'Opdrachtgever';
+    }
+
+    public function canAddDeleteUser()
+    {
         return $this->role() == 'Hoofdaannemer';
     }
 }

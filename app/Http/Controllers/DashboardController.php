@@ -15,4 +15,9 @@ class DashboardController extends Controller
         }
         return view('dashboard', ['projects' => Auth::user()->projects()]);
     }
+
+    public function agenda()
+    {
+        return view('agenda');
+    }
 }

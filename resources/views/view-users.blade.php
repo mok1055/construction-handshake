@@ -6,8 +6,12 @@
             <li><a href="{{ url('dashboard') }}">Home</a></li>
             <li><a href="{{ url('profile') }}">Mijn profiel</a></li>
             <li><a href="{{ url('projects') }}">Projecten overzicht</a></li>
-            <li><a href="{{ url('projects/create') }}">Project toevoegen</a></li>
-            <li><a href="#agenda">Agenda</a></li>
+            @if (Auth::user()->canCreateEditProject())
+                <li>
+                    <a href="{{ url('projects/create') }}" class="{{ (Request::is('projects/create')) ? 'active' : '' }}">Project toevoegen</a>
+                </li>
+            @endif
+            <li><a href="{{ url('agenda') }}">Agenda</a></li>
             <li><a href="{{ Auth::user()->canCreateEditProject() ? route('projects.edit', $project->id) : route('projects.show', $project->id) }}">Project: {{ $project->name }}</a></li>
             <li><a href="{{ url('projects/'.$project->id.'/view-users/') }}" class="active">Personen overzicht</a></li>
         </ul>
@@ -15,7 +19,7 @@
 @endsection
 
 @section('content')
-    <button class="btn btn-secondary" onclick="location.href='{{ url('projects/'.$project->id.'/edit') }}'">
+    <button class="btn btn-secondary" onclick="location.href='{{ Auth::user()->canCreateEditProject() ? url('projects/'.$project->id.'/edit') : url('projects/'.$project->id) }}'">
         Terug naar project
     </button>
     <br><br>
@@ -31,7 +35,7 @@
             <th>Voornaam</th>
             <th>Achternaam</th>
             <th>E-mailadres</th>
-            @if (Auth::user()->canCreateEditProject())
+            @if (Auth::user()->canAddDeleteUser())
                 <th></th>
             @endif
         </tr>
@@ -41,7 +45,7 @@
                 <td>{{$user->first_name}}</td>
                 <td>{{$user->last_name}}</td>
                 <td>{{$user->email}}</td>
-                @if (Auth::user()->canCreateEditProject() && Auth::user()->id != $user->id)
+                @if (Auth::user()->canAddDeleteUser() && Auth::user()->id != $user->id)
                     <td>
                         <form action="{{ url('projects/'.$project->id.'/delete-user/'.$user->id) }}" method="POST">
                             @method('DELETE')
