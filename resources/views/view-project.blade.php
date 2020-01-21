@@ -44,9 +44,9 @@
         </div>
     @endif
     <h3>{{ $project->name }}</h3><br>
-    <form action="{{ url('projects/'.$project->id.'/add-user') }}" method="POST">
+    <form action="/projects/{{ $project->id }}/edit-metadata/" method="POST">
         {{ csrf_field() }}
-        {{ method_field('POST') }}
+        {{ method_field('PUT') }}
         <div class="form-group">
             <label>Project beschrijving</label>
             <textarea class="form-control" disabled>{{ $project->description }}</textarea>
@@ -59,12 +59,27 @@
                 </div>
                 <br>
             @endif
-            <button class="btn btn-secondary" onclick="location.href='{{ url('projects/'.$project->id.'/view-users') }}'" type="button">Personen overzicht inzien
+            <button class="btn btn-secondary" name="add-user" onclick="location.href='{{ url('projects/'.$project->id.'/view-users') }}'" type="button">Personen overzicht inzien
             </button>
         </div>
-        <div class="form-group">
-            <label>Project status</label><br> <input disabled value="{{ $project->status()->name }}">
-        </div>
+        @if (Auth::user()->canEditStatus())
+            <div class="form-group">
+                <label for="status">Project status *</label><br>
+                <select class="browser-default custom-select dropdown-primary" name="status" value="1">
+                    @foreach($statuses as $status)
+                        @if ($status->id == $project->status()->id)
+                            <option selected="selected" value="{{ $status->id }}">{{ $status->name }}</option>
+                        @else
+                            <option value="{{ $status->id }}">{{ $status->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        @else
+            <div class="form-group">
+                <label>Project status</label><br> <input disabled value="{{ $project->status()->name }}">
+            </div>
+        @endif
         <br>
         <div class="form-group">
             <label>Begindatum</label><br> <input disabled value="{{ $project->start_date->format('d-m-Y') }}">
@@ -73,5 +88,11 @@
         <div class="form-group">
             <label>Einddatum</label><br> <input disabled value="{{ $project->end_date->format('d-m-Y') }}">
         </div>
+        @if (Auth::user()->canEditStatus())
+            <div class="form-group">
+                <button class="btn btn-success" name="update-status" value="update">Wijzigingen opslaan</button>
+                <br><br>
+            </div>
+        @endif
     </form>
 @endsection

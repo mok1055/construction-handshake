@@ -66,16 +66,7 @@
             </button>
         </div>
         <div class="form-group">
-            <label for="status">Project status *</label><br>
-            <select class="browser-default custom-select dropdown-primary" name="status" value="1">
-                @foreach($statuses as $status)
-                    @if ($status->id == $project->status()->id)
-                        <option selected="selected" value="{{ $status->id }}">{{ $status->name }}</option>
-                    @else
-                        <option value="{{ $status->id }}">{{ $status->name }}</option>
-                    @endif
-                @endforeach
-            </select>
+            <label>Project status</label><br> <input disabled value="{{ $project->status()->name }}">
         </div>
         <br>
         <div class="form-group">
@@ -89,7 +80,7 @@
         </div>
         <br><br>
         <div class="form-group">
-            <button class="btn btn-success" name="action" value="update">Wijzigingen opslaan</button>
+            <button class="btn btn-success" name="update-status" value="update">Wijzigingen opslaan</button>
             <br><br>
         </div>
 

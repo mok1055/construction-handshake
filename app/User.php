@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->role() == 'Opdrachtgever' || $this->role() == 'Hoofdaannemer';
     }
+
+    public function canEditStatus()
+    {
+        return $this->role() == 'Hoofdaannemer';
+    }
 }

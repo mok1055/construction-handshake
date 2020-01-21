@@ -47,7 +47,8 @@ class ProjectController extends Controller
 
     public function show($id)
     {
-        return view('view-project', ['project' => Project::find($id)]);
+        return view('view-project', ['project' => Project::find($id),
+            'statuses' => ProjectStatus::all()]);
     }
 
     public function edit($id)
@@ -65,20 +66,14 @@ class ProjectController extends Controller
         if (Auth::user() != null && !Auth::user()->canCreateEditProject() && !Auth::user()->canAddUserToProject()) {
             return abort(403);
         }
-        $type = $request->input('action');
         $project = Project::find($id);
-        if ($type == 'update') {
-            $project->update(array(
-                'name' => $request->name,
-                'description' => $request->description == null ? "" : $request->description,
-                'status_id' => ProjectStatus::find($request->status)->id,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date
-            ));
-            return redirect('dashboard');
-        } else {
-            return $this->addUser($request, $id);
-        }
+        $project->update(array(
+            'name' => $request->name,
+            'description' => $request->description == null ? "" : $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
+        ));
+        return back()->with('success', 'De wijzigingen zijn opgeslagen!');
     }
 
     public function destroy($id)
@@ -125,6 +120,35 @@ class ProjectController extends Controller
                 return back()->with('success', 'De gebruiker is verwijderd van het project!');
             }
             return back();
+        }
+        return back();
+    }
+
+    public function editMetaData(Request $request, $id)
+    {
+        $project = Project::find($id);
+        if ($project == null) {
+            return back();
+        }
+        $type = $request->input('action');
+        if ($type == 'add-user') {
+            $user = User::where('email', 'like', $request->email)->first();
+            if ($user == null) {
+                return back()->withErrors(['De gebruiker bestaat niet!']);
+            }
+            if ($project->contains($user)) {
+                return back()->withErrors(['De gebruiker zit al in het project!']);
+            }
+            ProjectUser::create(array(
+                'user_id' => $user->id,
+                'project_id' => $id
+            ));
+            return back()->with('success', 'De gebruiker is toegevoegd aan het project!');
+        } else {
+            $project->update(array(
+                'status_id' => ProjectStatus::find($request->status)->id,
+            ));
+            return back()->with('success', 'De status van het project is gewijzigd!');
         }
         return back();
     }
