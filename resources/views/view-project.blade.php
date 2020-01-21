@@ -19,6 +19,7 @@
                 <a href="{{ Auth::user()->canCreateEditProject() ? route('projects.edit', $project->id) : route('projects.show', $project->id) }}" class="active">Project: {{ $project->name }}</a>
             </li>
             <li><a href="{{ url('projects/'.$project->id.'/view-users/') }}">Personen overzicht</a></li>
+            <li><a href="{{ url('projects/'.$project->id.'/rate-work/') }}">Beoordeling</a></li>
         </ul>
     </div>
 @endsection

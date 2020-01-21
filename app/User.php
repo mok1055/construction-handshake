@@ -56,6 +56,6 @@ class User extends Authenticatable
 
     public function canAddDeleteUser()
     {
-        return $this->role() == 'Hoofdaannemer';
+        return $this->role() == 'Opdrachtgever' || $this->role() == 'Hoofdaannemer';
     }
 }

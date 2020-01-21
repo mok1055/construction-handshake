@@ -27,3 +27,4 @@ Route::resource('projects', 'ProjectController');
 Route::get('projects/{id}/view-users/', 'ProjectController@viewUsers');
 Route::post('projects/{id}/add-user/', 'ProjectController@addUser');
 Route::delete('projects/{projectId}/delete-user/{userId}', 'ProjectController@deleteUser');
+Route::get('projects/{id}/rate-work/', 'ProjectController@rateWork');

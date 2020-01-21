@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
             'last_name'             => 'Kichouhi',
             'email'                 => 'mohamed.kichouhi@student.hu.nl',
             'password'              =>  Hash::make('test123'),
-            'role_id'               =>  2
+            'role_id'               =>  1
         ]);
         //user (id=2)
 
