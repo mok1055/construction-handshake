@@ -62,18 +62,23 @@ class ProjectController extends Controller
 
     public function update(ProjectRequest $request, $id)
     {
-        if (Auth::user() != null && !Auth::user()->canCreateEditProject()) {
+        if (Auth::user() != null && !Auth::user()->canCreateEditProject() && !Auth::user()->canAddUserToProject()) {
             return abort(403);
         }
+        $type = $request->input('action');
         $project = Project::find($id);
-        $project->update(array(
-            'name' => $request->name,
-            'description' => $request->description == null ? "" : $request->description,
-            'status_id' => ProjectStatus::find($request->status)->id,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date
-        ));
-        return back()->with('success', 'De wijzigingen zijn opgeslagen!');
+        if ($type == 'update') {
+            $project->update(array(
+                'name' => $request->name,
+                'description' => $request->description == null ? "" : $request->description,
+                'status_id' => ProjectStatus::find($request->status)->id,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date
+            ));
+            return redirect('dashboard');
+        } else {
+            return $this->addUser($request, $id);
+        }
     }
 
     public function destroy($id)
@@ -120,6 +125,15 @@ class ProjectController extends Controller
                 return back()->with('success', 'De gebruiker is verwijderd van het project!');
             }
             return back();
+        }
+        return back();
+    }
+
+    public function rateWork($id)
+    {
+        $project = Project::find($id);
+        if ($project != null) {
+            return view('rate-work', ['project' => $project]);
         }
         return back();
     }
