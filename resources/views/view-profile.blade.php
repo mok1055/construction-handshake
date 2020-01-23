@@ -7,8 +7,8 @@
     <br><br>
     <h3>Profiel</h3><br>
     <form action="{{ url('profile/update') }}" method="POST">
-        {{ csrf_field() }}
-        {{ method_field('PUT') }}
+        @csrf
+        @method('put')
         <div class=" form-group">
             <label id="first_name">Voornaam:</label>
             <input type="text" class="form-control" name="first_name" value="{{ Auth::user()->first_name }}"/>

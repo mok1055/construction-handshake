@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProjectRequest;
 use App\Project;
@@ -9,6 +10,7 @@ use App\ProjectStatus;
 use App\ProjectUser;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProjectController extends Controller
@@ -156,10 +158,35 @@ class ProjectController extends Controller
     public function rateWork($id)
     {
         $project = Project::find($id);
-        if ($project != null) {
-            return view('rate-work', ['project' => $project]);
+        if ($project == null) {
+            return back();
         }
-        return back();
+        if (!$project->isClosed()) {
+            return abort(403);
+        }
+        return view('rate-work', ['project' => $project]);
+    }
+
+    public function addRating(Request $request, $id)
+    {
+        $project = Project::find($id);
+        if ($project == null) {
+            return back();
+        }
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imagePath = time() . '.' . request()->image->getClientOriginalExtension();
+        //request()->image->move(public_path('images/ratings'), $imagePath);
+        Storage::disk('public')->put('images/ratings/'.$imagePath, $request->image);
+        $rating = Rating::create(array(
+            'user_id'     =>    Auth::user()->id,
+            'project_id'  =>    $project->id,
+            'mark'        =>    $request->mark,
+            'comments'    =>    $request->comments,
+            'image_path'  =>    $imagePath
+        ));
+        return $this->show($id);
     }
 
 

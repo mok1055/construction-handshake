@@ -618,6 +618,10 @@ div.add-person {
     text-decoration: none;
 }
 
+.sidebar disabled-entry {
+    z-index: -1;
+}
+
 @media screen and (max-width: 700px) {
     .sidebar {
         width: 100%;

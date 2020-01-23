@@ -28,3 +28,4 @@ Route::get('projects/{id}/view-users/', 'ProjectController@viewUsers');
 Route::put('projects/{id}/edit-metadata/', 'ProjectController@editMetaData');
 Route::delete('projects/{projectId}/delete-user/{userId}', 'ProjectController@deleteUser');
 Route::get('projects/{id}/rate-work/', 'ProjectController@rateWork');
+Route::post('projects/{id}/rate-work/add/', 'ProjectController@addRating');

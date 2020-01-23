@@ -19,6 +19,9 @@
                 <a href="{{ Auth::user()->canCreateEditProject() ? route('projects.edit', $project->id) : route('projects.show', $project->id) }}" class="active">Project: {{ $project->name }}</a>
             </li>
             <li><a href="{{ url('projects/'.$project->id.'/view-users/') }}">Personen overzicht</a></li>
+            @if ($project->canRate(Auth::user()))
+                <li><a href="{{ url('projects/'.$project->id.'/rate-work/') }}">Beoordeling</a></li>
+            @endif
         </ul>
     </div>
 @endsection
@@ -44,8 +47,8 @@
     @endif
     <h3>Project wijzigen</h3><br>
     <form action="/projects/{{ $project->id }}" method="POST">
-        {{ csrf_field() }}
-        {{ method_field('PUT') }}
+        @csrf
+        @method('put')
         <div class="form-group">
             <label for="name">Project naam *</label>
             <input type="text" class="form-control" name="name" value="{{ $project->name }}"/>
