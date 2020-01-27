@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Rating extends Model
 {
@@ -11,4 +12,9 @@ class Rating extends Model
     ];
 
     protected $table = 'rating';
+
+    public function user()
+    {
+        return $this->belongsTo('App\User')->first();
+    }
 }

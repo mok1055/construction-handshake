@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->role() == 'Hoofdaannemer';
     }
+
+    public function canViewRatings()
+    {
+        return $this->role() == 'Hoofdaannemer';
+    }
 }
