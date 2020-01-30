@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -67,5 +66,13 @@ class User extends Authenticatable
     public function canViewRatings()
     {
         return $this->role() == 'Hoofdaannemer';
+    }
+
+    public function canViewRating(Rating $rating)
+    {
+        if ($this->role() == 'Hoofdaannemer') {
+            return true;
+        }
+        return $rating->user_id == $this->id;
     }
 }

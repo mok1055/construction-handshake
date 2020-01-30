@@ -20,7 +20,10 @@
             </li>
             <li><a href="{{ url('projects/'.$project->id.'/view-users/') }}">Personen overzicht</a></li>
             @if ($project->canRate(Auth::user()))
-                <li><a href="{{ url('projects/'.$project->id.'/rate-work/') }}">Beoordeling</a></li>
+                <li><a href="{{ url('projects/'.$project->id.'/ratings/create') }}">Beoordeling</a></li>
+            @endif
+            @if (Auth::user()->canViewRatings())
+                <li><a href="{{ url('projects/'.$project->id.'/ratings/') }}">Beoordelingen overzicht</a></li>
             @endif
         </ul>
     </div>

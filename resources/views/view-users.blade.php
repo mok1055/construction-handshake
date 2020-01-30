@@ -15,7 +15,10 @@
             <li><a href="{{ Auth::user()->canCreateEditProject() ? route('projects.edit', $project->id) : route('projects.show', $project->id) }}">Project: {{ $project->name }}</a></li>
             <li><a href="{{ url('projects/'.$project->id.'/view-users/') }}" class="active">Personen overzicht</a></li>
             @if ($project->canRate(Auth::user()))
-                <li><a href="{{ url('projects/'.$project->id.'/rate-work/') }}">Beoordeling</a></li>
+                <li><a href="{{ url('projects/'.$project->id.'/ratings/create') }}">Beoordeling</a></li>
+            @endif
+            @if (Auth::user()->canViewRatings())
+                <li><a href="{{ url('projects/'.$project->id.'/ratings/') }}">Beoordelingen overzicht</a></li>
             @endif
         </ul>
     </div>
@@ -51,7 +54,7 @@
                 @if (Auth::user()->canAddDeleteUser() && Auth::user()->id != $user->id)
                     <td>
                         <form action="{{ url('projects/'.$project->id.'/delete-user/'.$user->id) }}" method="POST">
-                            @method('DELETE')
+                            @method('delete')
                             @csrf
                             <button class="btn btn-danger">
                                 X

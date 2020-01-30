@@ -14,10 +14,11 @@ class CreateRatingTable extends Migration
     public function up()
     {
         Schema::create('rating', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('mark');
-            $table->string('comments');
+            $table->string('comments')->default('');
             $table->string('image_path');
             $table->timestamps();
 
