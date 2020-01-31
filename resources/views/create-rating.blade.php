@@ -63,7 +63,7 @@
         <div class="form-group">
             <label id="email">Cijfer *</label><br>
             <select class="browser-default custom-select dropdown-primary" name="mark" value="1">
-                @for ($cijfer = 1; $cijfer <= 10; $cijfer++)
+                @for ($cijfer = 1; $cijfer <= 5; $cijfer++)
                     @if ($cijfer == 1)
                         <option selected="selected" value="{{ $cijfer }}">{{ $cijfer }}</option>
                     @else
