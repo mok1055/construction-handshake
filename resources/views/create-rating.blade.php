@@ -17,7 +17,10 @@
             </li>
             <li><a href="{{ url('projects/'.$project->id.'/view-users/') }}">Personen overzicht</a></li>
             @if ($project->canRate(Auth::user()))
-                <li><a href="{{ url('projects/'.$project->id.'/rate-work/') }}" class="active">Beoordeling</a></li>
+                <li><a href="{{ url('projects/'.$project->id.'/ratings/create') }}" class="active">Beoordeling</a></li>
+            @endif
+            @if (Auth::user()->canViewRatings())
+                <li><a href="{{ url('projects/'.$project->id.'/ratings/') }}">Beoordelingen overzicht</a></li>
             @endif
         </ul>
     </div>
@@ -33,8 +36,17 @@
             <strong>{{ $message }}</strong>
         </div>
     @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->unique() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h3>Beoordeling</h3><br>
-    <form action="{{ url('projects/'.$project->id.'/rate-work/add') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('projects/'.$project->id.'/ratings/add') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label id="email">Project:</label><br> <input disabled value="{{ $project->name }}"/>
@@ -44,6 +56,9 @@
         </div>
         <div class="form-group">
             <label for="description">Opmerkingen</label> <textarea class="form-control" name="comments"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="description">Invoerveld x *</label><br><input type="number" name="input_1">
         </div>
         <div class="form-group">
             <label id="email">Cijfer *</label><br>
@@ -63,6 +78,5 @@
         </div>
         <br>
         <button class="btn btn-success">Beoordeling versturen</button>
-        <br><br>
     </form>
 @endsection
