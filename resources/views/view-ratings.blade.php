@@ -19,6 +19,7 @@
                 <td>{{$rating->mark}}</td>
                 <td>{{$rating->comments}}</td>
                 <td><img src="{{ Storage::url('app/images/ratings/'.$rating->image_path)}}"></td>
+                console.log({{$rating}})
             </tr>
         @endforeach
     </table>

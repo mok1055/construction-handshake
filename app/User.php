@@ -49,6 +49,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\UserRole')->first()->name;
     }
 
+    public function walletAdress(User $userid)
+    {
+        return User::select('wallet')->where('user_id', $userid)->get();
+    }
+
     public function canCreateEditProject()
     {
         return $this->role() == 'Opdrachtgever';
