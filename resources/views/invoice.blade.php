@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.ico') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.ico') }}" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
     <!--===============================================================================================-->
@@ -29,49 +30,67 @@
 </head>
 
 <body>
-@section('topbar')
     <header>
         <div class="topbar">
             @if(isset(Auth::user()->email))
-                <a href="{{ url('dashboard') }}"><img class="logo" src="{{ asset('images/logo-new.png') }}"></a>
-                <ul>
-                    <li>
-                        <label class="welcome"><a href="{{ url('profile') }}" class="welcome">Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a></label>
-                    </li>
-                    <br>
-                    <li>
-                        <label class="logout"><a href="{{ url('logout') }}" class="logout">Log uit</a></label>
-                    </li>
-                </ul>
+            <div class="header-info">
+                <h3>Welcome {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h3>
+                <a href="{{ url('/logout') }}">Logout</a>
+            </div>
             @else
-                <script>
-                    window.location = "/home";
-                </script>
+            <script>
+                window.location = "/main";
+
+            </script>
             @endif
         </div>
     </header>
-@show
-@section('sidebar')
+    <!-- The sidebar -->
     <div class="sidebar">
-        <ul class="sidebar-list">
-            <li><a href="{{ url('dashboard') }}" class="{{ (Request::is('dashboard')) ? 'active' : '' }}">Home</a></li>
-            <li><a href="{{ url('profile') }}" class="{{ (Request::is('profile')) ? 'active' : '' }}">Mijn profiel</a>
-            </li>
-            <li>
-                <a href="{{ url('projects') }}" class="{{ (Request::is('projects')) ? 'active' : '' }}">Projecten overzicht</a>
-            </li>
-            @if (Auth::user()->canCreateEditProject())
-                <li>
-                    <a href="{{ url('projects/create') }}" class="{{ (Request::is('projects/create')) ? 'active' : '' }}">Project toevoegen</a>
-                </li>
-            @endif
-            <li><a href="{{ url('agenda') }}" class="{{ (Request::is('agenda')) ? 'active' : '' }}">Agenda</a></li>
-        </ul>
+        <a class="active" href="#home">Dashboard</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
     </div>
-@show
 
-<div class="content">
-    @yield('content')
-</div>
+    <!-- Page content -->
+    <div class="content">
+        <div class="planning">
+            <div></div>
+            <h2>Facturen</h2><br>
+            <button onclick="location.href='{{ url('invoice/add') }}'"type="button" class="btn btn-success">Factuur toevoegen</button><br><br>
+            <table class="table-fill">
+                <tr>
+                    <th>Factuurnummer</th>
+                    <th>Beschrijving</th>
+                    <th>Bedrag</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Testfactuur</td>
+                    <td>€500</td>
+                    <td><button>Check</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Test2</td>
+                    <td>€250</td>
+                    <td><button>Check</button></td>
+                </tr>
+            </table>
+        </div>
+        
+
+            <script src="../js/projects.js"></script>
+                <script src="../js/calendar.js"></script>
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                  crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+                  integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+                  crossorigin="anonymous"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+                  integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+                  crossorigin="anonymous"></script>
 </body>
-</html>

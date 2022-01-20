@@ -10,16 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'MainController@index');
 
-Route::get('home', 'MainController@index');
-
-Route::post('home/checklogin', 'MainController@checkLogin');
+Route::post('checklogin', 'MainController@checkLogin');
 
 Route::get('logout', 'MainController@logout');
 
 Route::get('dashboard', 'DashboardController@index');
+Route::get('agenda', 'DashboardController@agenda');
 
-Route::get('dashboard/project/add', 'DashboardController@createProject');
+Route::get('profile', 'ProfileController@index');
+Route::put('profile/update', 'ProfileController@update');
 
 Route::resource('projects', 'ProjectController');
+Route::get('projects/{id}/view-users/', 'ProjectController@viewUsers');
+Route::post('projects/{id}/add-user/', 'ProjectController@addUser');
+Route::delete('projects/{projectId}/delete-user/{userId}', 'ProjectController@deleteUser');

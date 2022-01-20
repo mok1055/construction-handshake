@@ -9,14 +9,21 @@ class Project extends Model
     protected $dates = ['start_date', 'end_date'];
 
     protected $fillable = [
-        'name', 'description', 'type', 'status', 'start_date', 'end_date',
+        'name', 'description', 'status_id', 'start_date', 'end_date',
     ];
 
     protected $table = 'project';
-    protected $primaryKey = 'project_id';
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'project_user', 'project_id', 'user_id');
+        return $this->belongsToMany('App\User', 'project_user', 'project_id', 'user_id')->get();
+    }
+
+    public function status() {
+        return $this->belongsTo('App\ProjectStatus')->first();
+    }
+
+    public function contains(User $user) {
+        return $this->users()->contains($user);
     }
 }
